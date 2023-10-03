@@ -1,0 +1,20 @@
+{
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */4 * * * *"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "log",
+      "databaseName": "collectpos",
+      "collectionName": "KeepAliveLogs",
+      "createIfNotExists": false,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "partitionKey": "/period"
+    }
+  ]
+}

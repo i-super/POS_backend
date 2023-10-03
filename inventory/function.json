@@ -1,0 +1,47 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get", "post", "put", "delete"],
+      "route": "inventory/{id?}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "employees",
+      "databaseName": "collectpos",
+      "collectionName": "Inventory",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "select * from c where c.isActive and c.store.id = {store}",
+      "partitionKey": "/id"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "addEmployee",
+      "databaseName": "collectpos",
+      "collectionName": "Inventory",
+      "createIfNotExists": false,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "partitionKey": "/id"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "addTransactionHistory",
+      "databaseName": "collectpos",
+      "collectionName": "TransactionHistory",
+      "createIfNotExists": false,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "partitionKey": "/id"
+    }
+  ]
+}

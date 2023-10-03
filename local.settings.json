@@ -1,0 +1,19 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=collectposae3b;AccountKey=MOLJA+KdEe1UhZX/4bzG/QjCQrNu4/hnHNvofYlm8ICQhdpkSFpLL4xibrVkKwvIPvuEWV/5JnSV+ASt1H65eA==;EndpointSuffix=core.windows.net",
+    "CosmosDbConnectionString": "AccountEndpoint=https://collectpos1.documents.azure.com:443/;AccountKey=RCifsE5c0DDWoYTmAnUh61bkmc62ztmFKMVrznECPSdBxfDU0NKKnZEM3fvsbMbcoG8soVcOm2T4ACDbRhjSOA==",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FUNCTIONS_EXTENSION_VERSION": "~4",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "cb17bd69-c1c9-4ecf-8415-7d575a988017",
+    "jwtSecret": "0cc30ffe-df4f-4a11-b9eb-847fb03d120b",
+    "jwtExpiresIn": "1h",
+    "refreshExpiresIn": "24h",
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=cb17bd69-c1c9-4ecf-8415-7d575a988017;IngestionEndpoint=https://uksouth-1.in.applicationinsights.azure.com/;LiveEndpoint=https://uksouth.livediagnostics.monitor.azure.com/",
+    "AzureWebJobsSecretStorageType": "files",
+    "WEBSITE_RUN_FROM_PACKAGE": "0",
+    "WEBSITE_NODE_DEFAULT_VERSION": "~18",
+    "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "DefaultEndpointsProtocol=https;AccountName=collectposae3b;AccountKey=MOLJA+KdEe1UhZX/4bzG/QjCQrNu4/hnHNvofYlm8ICQhdpkSFpLL4xibrVkKwvIPvuEWV/5JnSV+ASt1H65eA==;EndpointSuffix=core.windows.net",
+    "WEBSITE_CONTENTSHARE": "collectpos1a4be"
+  }
+}

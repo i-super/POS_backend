@@ -1,0 +1,47 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get"],
+      "route": "category-glance/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "categories",
+      "databaseName": "collectpos",
+      "collectionName": "TransactionHistory",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "SELECT DISTINCT VALUE c.TID FROM c where c.isActive and c.product.category={id} and c.store.id={store} and c.TransactionType='Sale' and c.createdOn > {startDate} and c.createdOn < {endDate} order by c.TID desc",
+      "partitionKey": "/id"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "sales",
+      "databaseName": "collectpos",
+      "collectionName": "TransactionHistory",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "SELECT * FROM c where c.isActive and c.product.category={id} and c.TransactionType='Sale' and c.store.id={store} and c.createdOn > {startDate} and c.createdOn < {endDate}",
+      "partitionKey": "/id"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "trades",
+      "databaseName": "collectpos",
+      "collectionName": "TransactionHistory",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "SELECT * FROM c where c.isActive and c.product.category={id} and c.TransactionType='Trade' and c.store.id={store} and c.createdOn > {startDate} and c.createdOn < {endDate}",
+      "partitionKey": "/id"
+    }
+  ]
+}

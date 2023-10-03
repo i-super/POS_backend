@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get"],
+      "route": "store-inventory/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "inventory",
+      "databaseName": "collectpos",
+      "collectionName": "Inventory",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "select * from c where c.isActive and c.store.id = {id}",
+      "partitionKey": "/id"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get", "post"]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "counter",
+      "databaseName": "collectpos",
+      "collectionName": "Counter",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "select * from c",
+      "partitionKey": "/id"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "addCounter",
+      "databaseName": "collectpos",
+      "collectionName": "Counter",
+      "createIfNotExists": false,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "partitionKey": "/id"
+    }
+  ]
+}
