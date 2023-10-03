@@ -1,0 +1,37 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get"],
+      "route": "by-category-stats/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "categories",
+      "databaseName": "collectpos",
+      "collectionName": "TransactionHistory",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "SELECT DISTINCT VALUE c.product.category FROM c where c.isActive and c.store.id={id} and c.createdOn > {startDate} and c.createdOn < {endDate} order by c.product.category",
+      "partitionKey": "/id"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "inventory",
+      "databaseName": "collectpos",
+      "collectionName": "TransactionHistory",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "SELECT * FROM c where c.isActive and c.store.id = {id} and c.createdOn > {startDate} and c.createdOn < {endDate}",
+      "partitionKey": "/id"
+    }
+  ]
+}

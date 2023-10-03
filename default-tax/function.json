@@ -1,0 +1,37 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get", "put"],
+      "route": "default-tax/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "stores",
+      "databaseName": "collectpos",
+      "collectionName": "Stores",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "select * from c where c.isActive and c.id={id}",
+      "partitionKey": "/id"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "addStore",
+      "databaseName": "collectpos",
+      "collectionName": "Stores",
+      "createIfNotExists": false,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "partitionKey": "/id"
+    }
+  ]
+}

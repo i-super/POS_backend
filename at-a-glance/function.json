@@ -1,0 +1,37 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["get"],
+      "route": "at-a-glance/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "transactions",
+      "databaseName": "collectpos",
+      "collectionName": "Transaction",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "select * from c where c.store.id={id} and c.createdOn > {startDate} and c.createdOn < {endDate}",
+      "partitionKey": "/id"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "trades",
+      "databaseName": "collectpos",
+      "collectionName": "Trade",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "sqlQuery": "select * from c where c.store.id={id} and c.createdOn > {startDate} and c.createdOn < {endDate}",
+      "partitionKey": "/id"
+    }
+  ]
+}
